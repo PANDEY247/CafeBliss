@@ -1,101 +1,31 @@
 
-import React, { useState } from "react";
+import React from "react";
 
 const Navbar = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      setMobileMenuOpen(false);
-    }
-  };
-
   return (
     <nav className="fixed top-0 left-0 w-full bg-white/80 backdrop-blur-md shadow-md z-50">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <h1
-          onClick={() => scrollToSection('home')}
-          className="text-2xl font-bold text-amber-800 cursor-pointer"
-        >
-          Café Bliss
-        </h1>
+        {/* Logo */}
+        <h1 className="text-2xl font-bold text-amber-800">Café Bliss</h1>
 
+        {/* Navigation Links */}
         <ul className="hidden md:flex space-x-8 text-amber-900 font-medium">
-          <li
-            onClick={() => scrollToSection('home')}
-            className="hover:text-amber-700 cursor-pointer transition-colors"
-          >
-            Home
-          </li>
-          <li
-            onClick={() => scrollToSection('menu')}
-            className="hover:text-amber-700 cursor-pointer transition-colors"
-          >
-            Menu
-          </li>
-          <li
-            onClick={() => scrollToSection('about')}
-            className="hover:text-amber-700 cursor-pointer transition-colors"
-          >
-            About
-          </li>
-          <li
-            onClick={() => scrollToSection('contact')}
-            className="hover:text-amber-700 cursor-pointer transition-colors"
-          >
-            Contact
-          </li>
+          <li className="hover:text-amber-700 cursor-pointer">Home</li>
+          <li className="hover:text-amber-700 cursor-pointer">Menu</li>
+          <li className="hover:text-amber-700 cursor-pointer">About</li>
+          <li className="hover:text-amber-700 cursor-pointer">Contact</li>
         </ul>
 
+        {/* Login Button */}
         <button className="hidden md:block px-4 py-2 bg-amber-700 text-white rounded-full hover:bg-amber-800 transition-all">
           Login
         </button>
 
-        <div
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden text-amber-900 text-2xl cursor-pointer"
-        >
-          {mobileMenuOpen ? '✕' : '☰'}
+        {/* Mobile Menu Icon */}
+        <div className="md:hidden text-amber-900 text-2xl cursor-pointer">
+          ☰
         </div>
       </div>
-
-      {mobileMenuOpen && (
-        <div className="md:hidden bg-white/95 backdrop-blur-md shadow-lg">
-          <ul className="flex flex-col space-y-4 px-6 py-6 text-amber-900 font-medium">
-            <li
-              onClick={() => scrollToSection('home')}
-              className="hover:text-amber-700 cursor-pointer transition-colors py-2 border-b border-amber-100"
-            >
-              Home
-            </li>
-            <li
-              onClick={() => scrollToSection('menu')}
-              className="hover:text-amber-700 cursor-pointer transition-colors py-2 border-b border-amber-100"
-            >
-              Menu
-            </li>
-            <li
-              onClick={() => scrollToSection('about')}
-              className="hover:text-amber-700 cursor-pointer transition-colors py-2 border-b border-amber-100"
-            >
-              About
-            </li>
-            <li
-              onClick={() => scrollToSection('contact')}
-              className="hover:text-amber-700 cursor-pointer transition-colors py-2 border-b border-amber-100"
-            >
-              Contact
-            </li>
-            <li className="pt-2">
-              <button className="w-full px-4 py-2 bg-amber-700 text-white rounded-full hover:bg-amber-800 transition-all">
-                Login
-              </button>
-            </li>
-          </ul>
-        </div>
-      )}
     </nav>
   );
 };

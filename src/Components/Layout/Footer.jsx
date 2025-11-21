@@ -1,15 +1,8 @@
 import React from "react";
 
 const Footer = () => {
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
-
   return (
-    <footer id="contact" className="bg-amber-900 text-amber-100 mt-12">
+    <footer className="bg-amber-900 text-amber-100 mt-12">
       <div className="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center md:items-start justify-between gap-6">
         {/* Brand */}
         <div className="flex flex-col items-center md:items-start">
@@ -28,10 +21,10 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-2">Explore</h4>
             <ul className="text-sm text-amber-200 space-y-1">
-              <li onClick={() => scrollToSection('home')} className="hover:text-white cursor-pointer">Home</li>
-              <li onClick={() => scrollToSection('menu')} className="hover:text-white cursor-pointer">Menu</li>
-              <li onClick={() => scrollToSection('about')} className="hover:text-white cursor-pointer">About</li>
-              <li onClick={() => scrollToSection('contact')} className="hover:text-white cursor-pointer">Contact</li>
+              <li className="hover:text-white cursor-pointer">Home</li>
+              <li className="hover:text-white cursor-pointer">Menu</li>
+              <li className="hover:text-white cursor-pointer">About</li>
+              <li className="hover:text-white cursor-pointer">Contact</li>
             </ul>
           </div>
 
