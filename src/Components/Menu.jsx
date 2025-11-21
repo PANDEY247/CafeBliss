@@ -23,7 +23,7 @@ const Menu = () => {
   const [activeTab, setActiveTab] = useState("Coffee");
 
   return (
-    <section className="bg-stone-50 py-16">
+    <section id="menu" className="bg-stone-50 py-16">
       <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-5xl font-bold text-amber-900 mb-12 text-center">Our Menu</h2>
 
