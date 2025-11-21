@@ -1,8 +1,12 @@
 
 import React, { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
+import AuthModal from "../Auth/AuthModal";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const { user, signOut } = useAuth();
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -49,9 +53,24 @@ const Navbar = () => {
           </li>
         </ul>
 
-        <button className="hidden md:block px-4 py-2 bg-amber-700 text-white rounded-full hover:bg-amber-800 transition-all">
-          Login
-        </button>
+        {user ? (
+          <div className="hidden md:flex items-center gap-4">
+            <span className="text-amber-900 font-medium">{user.email}</span>
+            <button
+              onClick={() => signOut()}
+              className="px-4 py-2 bg-amber-700 text-white rounded-full hover:bg-amber-800 transition-all"
+            >
+              Logout
+            </button>
+          </div>
+        ) : (
+          <button
+            onClick={() => setAuthModalOpen(true)}
+            className="hidden md:block px-4 py-2 bg-amber-700 text-white rounded-full hover:bg-amber-800 transition-all"
+          >
+            Login
+          </button>
+        )}
 
         <div
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -89,13 +108,36 @@ const Navbar = () => {
               Contact
             </li>
             <li className="pt-2">
-              <button className="w-full px-4 py-2 bg-amber-700 text-white rounded-full hover:bg-amber-800 transition-all">
-                Login
-              </button>
+              {user ? (
+                <>
+                  <p className="text-amber-900 font-medium mb-2">{user.email}</p>
+                  <button
+                    onClick={() => {
+                      signOut();
+                      setMobileMenuOpen(false);
+                    }}
+                    className="w-full px-4 py-2 bg-amber-700 text-white rounded-full hover:bg-amber-800 transition-all"
+                  >
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <button
+                  onClick={() => {
+                    setAuthModalOpen(true);
+                    setMobileMenuOpen(false);
+                  }}
+                  className="w-full px-4 py-2 bg-amber-700 text-white rounded-full hover:bg-amber-800 transition-all"
+                >
+                  Login
+                </button>
+              )}
             </li>
           </ul>
         </div>
       )}
+
+      <AuthModal isOpen={authModalOpen} onClose={() => setAuthModalOpen(false)} />
     </nav>
   );
 };
